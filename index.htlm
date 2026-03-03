@@ -1,0 +1,352 @@
+<style>
+  :root{
+    --bg:#0b0f14; --card:#121824; --text:#e7eefc; --muted:#9fb0cc;
+    --line:rgba(255,255,255,.10); --accent:#7aa7ff; --ok:#37d67a;
+    --shadow:0 10px 30px rgba(0,0,0,.35); --radius:14px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f6f8fc; --card:#fff; --text:#0d1526; --muted:#4b5a77;
+      --line:rgba(10,20,40,.12); --accent:#2f6bff; --shadow:0 10px 30px rgba(20,30,60,.12);
+    }
+  }
+
+  .john21-wrap{
+    max-width:1000px;margin:24px auto 64px;padding:0 16px;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    color:var(--text);
+  }
+  .john21-hero{
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:18px 18px 16px;
+    background: radial-gradient(1000px 600px at 10% -10%, rgba(122,167,255,.25), transparent 55%),
+                radial-gradient(900px 500px at 90% 0%, rgba(55,214,122,.18), transparent 55%),
+                var(--bg);
+    box-shadow: var(--shadow);
+    margin-bottom: 14px;
+  }
+  .john21-hero h2{margin:0;font-size:clamp(22px,3vw,34px);letter-spacing:-.02em;line-height:1.15}
+  .john21-hero p{margin:10px 0 0;color:var(--muted);line-height:1.6;max-width:75ch}
+
+  .john21-bar{
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;
+    margin: 12px 0 6px;
+  }
+  .john21-pill{
+    display:inline-flex;gap:10px;align-items:center;
+    padding:10px 12px;border:1px solid var(--line);border-radius:999px;
+    background: color-mix(in srgb, var(--card) 90%, transparent);
+    box-shadow: var(--shadow);
+  }
+  .john21-pill strong{color:var(--text)}
+  .john21-pill span{color:var(--muted)}
+  .john21-btn{
+    appearance:none;border:1px solid var(--line);background:var(--card);color:var(--text);
+    padding:10px 12px;border-radius:12px;cursor:pointer;box-shadow:var(--shadow);
+    font-weight:700;
+  }
+  .john21-btn:hover{border-color: color-mix(in srgb, var(--accent) 55%, var(--line));}
+  .john21-btn:active{transform: translateY(1px);}
+
+  .john21-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:12px}
+  @media(min-width:900px){.john21-grid{grid-template-columns:1fr 1fr}}
+
+  .john21-card{
+    border:1px solid var(--line);
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .john21-head{
+    padding:14px 14px 10px;border-bottom:1px solid var(--line);
+    display:flex;gap:12px;align-items:flex-start;justify-content:space-between;
+  }
+  .john21-left{min-width:0}
+  .john21-badge{
+    display:inline-flex;align-items:center;
+    padding:3px 8px;border-radius:999px;border:1px solid var(--line);
+    color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;
+    margin-right:8px;
+  }
+  .john21-ref a{
+    color:var(--accent);font-weight:800;text-decoration:none;border-bottom:1px solid transparent;
+  }
+  .john21-ref a:hover{
+    border-bottom-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  }
+  .john21-theme{margin:8px 0 0;color:var(--muted);line-height:1.45}
+  .john21-theme strong{color:var(--text)}
+
+  .john21-check{
+    display:inline-flex;align-items:center;gap:8px;user-select:none;white-space:nowrap;
+    color:var(--muted);font-weight:800;
+  }
+  .john21-check input{width:18px;height:18px;accent-color:var(--ok);cursor:pointer}
+
+  .john21-body{padding:12px 14px 14px;display:grid;gap:10px}
+  .john21-box{
+    padding:10px;border:1px dashed color-mix(in srgb, var(--line) 90%, transparent);
+    border-radius:12px;background:color-mix(in srgb, var(--card) 70%, transparent);
+  }
+  .john21-box h4{margin:0 0 8px;font-size:13px;letter-spacing:.01em}
+  .john21-box ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.55}
+
+  .john21-labels{display:flex;justify-content:space-between;gap:10px;align-items:baseline;margin-bottom:8px}
+  .john21-labels strong{font-size:13px}
+  .john21-labels span{color:var(--muted);font-size:12px}
+
+  .john21-textarea{
+    width:100%;min-height:92px;resize:vertical;border-radius:12px;border:1px solid var(--line);
+    background: color-mix(in srgb, var(--card) 85%, transparent);
+    color:var(--text);padding:10px;font:inherit;line-height:1.45;outline:none;
+  }
+  .john21-textarea:focus{border-color: color-mix(in srgb, var(--accent) 55%, var(--line));}
+  .john21-focus{color:var(--muted);font-size:12.5px;line-height:1.55}
+  .john21-focus strong{color:var(--text)}
+
+  .john21-toast{
+    position:fixed;left:50%;bottom:16px;transform:translateX(-50%);
+    background: color-mix(in srgb, var(--card) 92%, transparent);
+    border:1px solid var(--line);border-radius:999px;padding:10px 12px;box-shadow:var(--shadow);
+    display:none;gap:10px;align-items:center;z-index:9999;
+  }
+  .john21-dot{width:10px;height:10px;border-radius:50%;background:var(--ok)}
+</style>
+
+<div class="john21-wrap" id="john21App">
+  <div class="john21-hero">
+    <h2>21-Day Gospel of John Reading Plan</h2>
+    <p>Read one chapter each day. Click the chapter reference to open BibleGateway (NLT). Track progress + add reflection/prayer notes (auto-saved on this device).</p>
+  </div>
+
+  <div class="john21-bar">
+    <div class="john21-pill" aria-live="polite">
+      <strong id="john21ProgressText">0 / 21 completed</strong>
+      <span>•</span>
+      <span id="john21ProgressPct">0%</span>
+    </div>
+    <button class="john21-btn" type="button" id="john21ResetBtn">Reset All</button>
+  </div>
+
+  <div class="john21-grid" id="john21Cards"></div>
+</div>
+
+<div class="john21-toast" id="john21Toast" role="status" aria-live="polite">
+  <div class="john21-dot"></div>
+  <div id="john21ToastText">Saved</div>
+</div>
+
+<script>
+(function(){
+  // Change translation here if you want: NLT, NIV, ESV, CSB, KJV, etc.
+  const BG_VERSION = "NLT";
+  const STORAGE_KEY = "john21_snappages_v1";
+
+  const PLAN = [
+    {day:1, ref:"John 1", theme:"Jesus the Eternal Word & Light of the World",
+      reflect:["Where do you need Christ’s light today?","How does this chapter shape your understanding of Jesus?"],
+      prayerFocus:"Invite Jesus to lead your life and overcome darkness."},
+    {day:2, ref:"John 2", theme:"Jesus Reveals His Authority",
+      reflect:["Where are you waiting on God’s timing?","Does your life reflect devotion to God’s presence?"],
+      prayerFocus:"Trust Jesus’ authority and timing."},
+    {day:3, ref:"John 3", theme:"New Birth & Salvation",
+      reflect:["What does being “born again” mean in your life?","Where must Christ increase and you decrease?"],
+      prayerFocus:"Ask for spiritual renewal and deeper surrender."},
+    {day:4, ref:"John 4", theme:"Living Water & True Worship",
+      reflect:["Are you seeking fulfillment outside Christ?","Who can you share your testimony with?"],
+      prayerFocus:"Receive Christ as your true satisfaction."},
+    {day:5, ref:"John 5", theme:"Healing & Jesus as Son of God",
+      reflect:["Are excuses preventing spiritual growth?","Do you seek God’s approval or people’s approval?"],
+      prayerFocus:"Trust Jesus’ power and authority."},
+    {day:6, ref:"John 6", theme:"Bread of Life",
+      reflect:["Where do you need God’s provision?","How can you prioritize time alone with God?"],
+      prayerFocus:"Depend on Jesus as your spiritual sustainer."},
+    {day:7, ref:"John 7", theme:"God’s Timing & Living Water (Holy Spirit)",
+      reflect:["Where is patience needed in your life?","Why do some struggle to believe in Jesus?"],
+      prayerFocus:"Ask the Holy Spirit to guide your life."},
+    {day:8, ref:"John 8", theme:"Freedom Through Truth",
+      reflect:["How should grace shape how you treat others?","What areas need Christ’s truth?"],
+      prayerFocus:"Walk in forgiveness and spiritual freedom."},
+    {day:9, ref:"John 9", theme:"Spiritual Sight vs. Blindness",
+      reflect:["Could hardship be an opportunity for God’s work?","Where do you need clearer spiritual vision?"],
+      prayerFocus:"Ask God to help you see through faith."},
+    {day:10, ref:"John 10", theme:"The Good Shepherd",
+      reflect:["What distracts you from hearing Jesus’ voice?","How does Jesus care for you personally?"],
+      prayerFocus:"Trust Christ’s leadership and protection."},
+    {day:11, ref:"John 11", theme:"Resurrection & Life",
+      reflect:["Where do you struggle to trust God in waiting?","What does Jesus’ compassion reveal to you?"],
+      prayerFocus:"Trust Jesus even in grief and delay."},
+    {day:12, ref:"John 12", theme:"Worship & Surrender",
+      reflect:["What does wholehearted worship look like for you?","Are you living for God’s glory or human praise?"],
+      prayerFocus:"Offer your life fully to Christ."},
+    {day:13, ref:"John 13", theme:"Servant Leadership & Love",
+      reflect:["How can you serve others like Jesus today?","Is humility shaping your relationships?"],
+      prayerFocus:"Grow in Christlike love and service."},
+    {day:14, ref:"John 14", theme:"Peace & Promise of the Spirit",
+      reflect:["What worries do you need to surrender?","How does Jesus give peace right now?"],
+      prayerFocus:"Rest in Christ’s peace and promises."},
+    {day:15, ref:"John 15", theme:"Abiding in Christ",
+      reflect:["Are you remaining connected to Jesus daily?","What fruit is God producing in your life?"],
+      prayerFocus:"Ask to remain rooted in Christ."},
+    {day:16, ref:"John 16", theme:"The Work of the Holy Spirit",
+      reflect:["How is the Spirit guiding or correcting you?","Where is God turning sorrow into joy?"],
+      prayerFocus:"Welcome the Spirit’s leadership."},
+    {day:17, ref:"John 17", theme:"Jesus’ Prayer for Believers",
+      reflect:["How does unity reflect Christ to the world?","What does it mean to belong to God?"],
+      prayerFocus:"Pray for spiritual unity and faithfulness."},
+    {day:18, ref:"John 18", theme:"Faithfulness Under Pressure",
+      reflect:["How do you respond when faith is challenged?","Where do you need courage?"],
+      prayerFocus:"Stand firm in loyalty to Christ."},
+    {day:19, ref:"John 19", theme:"The Crucifixion",
+      reflect:["What does the cross reveal about God’s love?","How should sacrifice shape your life?"],
+      prayerFocus:"Respond with gratitude and surrender."},
+    {day:20, ref:"John 20", theme:"Resurrection & Belief",
+      reflect:["Where do you need renewed hope?","What strengthens your faith in the risen Christ?"],
+      prayerFocus:"Celebrate new life through Jesus."},
+    {day:21, ref:"John 21", theme:"Restoration & Calling",
+      reflect:["How does Jesus restore failures?","Where is He calling you to follow Him?"],
+      prayerFocus:"Commit again to follow Christ faithfully."},
+  ];
+
+  const elCards = document.getElementById("john21Cards");
+  const elProgText = document.getElementById("john21ProgressText");
+  const elProgPct = document.getElementById("john21ProgressPct");
+  const elToast = document.getElementById("john21Toast");
+  const elToastText = document.getElementById("john21ToastText");
+  const elReset = document.getElementById("john21ResetBtn");
+
+  function toast(msg){
+    elToastText.textContent = msg;
+    elToast.style.display = "inline-flex";
+    clearTimeout(toast._t);
+    toast._t = setTimeout(()=> elToast.style.display = "none", 1100);
+  }
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? (JSON.parse(raw) || {}) : {};
+    }catch{ return {}; }
+  }
+  function save(state){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    updateProgress(state);
+    toast("Saved");
+  }
+
+  function bgUrl(ref){
+    // "John 10" -> "John%2010"
+    const q = encodeURIComponent(ref);
+    return `https://www.biblegateway.com/passage/?search=${q}&version=${encodeURIComponent(BG_VERSION)}`;
+  }
+
+  function updateProgress(state){
+    const total = PLAN.length;
+    let done = 0;
+    for(const item of PLAN){
+      if(state[`day${item.day}`]?.done) done++;
+    }
+    const pct = Math.round((done/total)*100);
+    elProgText.textContent = `${done} / ${total} completed`;
+    elProgPct.textContent = `${pct}%`;
+  }
+
+  const state = load();
+
+  function render(){
+    elCards.innerHTML = "";
+    for(const item of PLAN){
+      const key = `day${item.day}`;
+      const dayState = state[key] || { done:false, reflection:"", prayer:"" };
+
+      const section = document.createElement("section");
+      section.className = "john21-card";
+
+      section.innerHTML = `
+        <div class="john21-head">
+          <div class="john21-left">
+            <span class="john21-badge">Day ${item.day}</span>
+            <span class="john21-ref">
+              <a href="${bgUrl(item.ref)}" target="_blank" rel="noopener noreferrer">${item.ref}</a>
+            </span>
+            <p class="john21-theme"><strong>Theme:</strong> ${escapeHtml(item.theme)}</p>
+          </div>
+          <label class="john21-check">
+            <input type="checkbox" ${dayState.done ? "checked":""} />
+            Done
+          </label>
+        </div>
+        <div class="john21-body">
+          <div class="john21-box">
+            <h4>Reflection Questions</h4>
+            <ul>
+              ${item.reflect.map(q => `<li>${escapeHtml(q)}</li>`).join("")}
+            </ul>
+          </div>
+
+          <div class="john21-box">
+            <div class="john21-labels">
+              <strong>Reflection</strong><span>Auto-saved</span>
+            </div>
+            <textarea class="john21-textarea" data-kind="reflection" placeholder="Write your reflection...">${escapeHtml(dayState.reflection || "")}</textarea>
+          </div>
+
+          <div class="john21-box">
+            <div class="john21-labels">
+              <strong>Prayer</strong><span>Auto-saved</span>
+            </div>
+            <textarea class="john21-textarea" data-kind="prayer" placeholder="Write your prayer...">${escapeHtml(dayState.prayer || "")}</textarea>
+            <div class="john21-focus"><strong>Prayer focus:</strong> ${escapeHtml(item.prayerFocus)}</div>
+          </div>
+        </div>
+      `;
+
+      // Wire up interactions
+      const checkbox = section.querySelector('input[type="checkbox"]');
+      checkbox.addEventListener("change", () => {
+        state[key] = { ...dayState, done: checkbox.checked };
+        // keep local copy in sync
+        dayState.done = checkbox.checked;
+        save(state);
+      });
+
+      section.querySelectorAll("textarea.john21-textarea").forEach((ta) => {
+        const kind = ta.getAttribute("data-kind");
+        ta.addEventListener("input", () => {
+          state[key] = { ...dayState, [kind]: ta.value };
+          // quiet save (no toast spam)
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          updateProgress(state);
+        });
+        ta.addEventListener("blur", () => toast("Saved"));
+      });
+
+      elCards.appendChild(section);
+    }
+
+    updateProgress(state);
+  }
+
+  function escapeHtml(str){
+    return String(str)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+
+  elReset.addEventListener("click", () => {
+    const ok = confirm("Reset ALL checkmarks and notes? This cannot be undone.");
+    if(!ok) return;
+    localStorage.removeItem(STORAGE_KEY);
+    for(const k of Object.keys(state)) delete state[k];
+    render();
+    toast("Reset");
+  });
+
+  render();
+})();
+</script>
